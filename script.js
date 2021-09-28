@@ -13,7 +13,7 @@ var result = document.querySelector('.result');
 result.addEventListener('click', colculate);
 function colculate(){
     var znak = document.querySelector('input');
-    if (znak.value.indexOf('+') != 1){
+    if (znak.value.indexOf('+') != -1){
         var XXX = znak.value.split('+');
         XXX[0] = parseInt(XXX[0]);
         XXX[1] = parseInt(XXX[1]);
