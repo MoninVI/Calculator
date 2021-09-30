@@ -18,8 +18,8 @@ function colculate(){
         XXX[0] = parseInt(XXX[0]);
         XXX[1] = parseInt(XXX[1]);
         znak.value = XXX[0] + XXX[1];
-    } else if (znak.value.indexOf('-') != -1){
-        var YYY = znak.value.split('-');
+    } else if (znak.value.indexOf('−') != -1){
+        var YYY = znak.value.split('−');
         YYY[0] = parseInt(YYY[0]);
         YYY[1] = parseInt(YYY[1]);
         znak.value = YYY[0] - YYY[1];}
