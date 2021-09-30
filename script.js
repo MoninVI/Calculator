@@ -23,6 +23,13 @@ function colculate(){
         YYY[0] = parseInt(YYY[0]);
         YYY[1] = parseInt(YYY[1]);
         znak.value = YYY[0] - YYY[1];
-        
+       // добавить умножить и разделить
     }
+}
+
+var clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', delInput);
+function delInput (){
+    var valueInput = document.querySelector('input');
+    valueInput.value = '';
 }
