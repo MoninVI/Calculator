@@ -12,27 +12,26 @@ function giveClick(event){
 var result = document.querySelector('.result');
 result.addEventListener('click', colculate);
 function colculate(){
-    var znak = document.querySelector('input');
-    if (znak.value.indexOf('+') != -1){
-        var XXX = znak.value.split('+');
-        XXX[0] = parseInt(XXX[0]);
-        XXX[1] = parseInt(XXX[1]);
-        znak.value = XXX[0] + XXX[1];
-    } else if (znak.value.indexOf('−') != -1){
-        var YYY = znak.value.split('−');
-        YYY[0] = parseInt(YYY[0]);
-        YYY[1] = parseInt(YYY[1]);
-        znak.value = YYY[0] - YYY[1];}
-        else if (znak.value.indexOf('×') != -1){
-            var ZZZ = znak.value.split('×');
-            ZZZ[0] = parseInt(ZZZ[0]);
-            ZZZ[1] = parseInt(ZZZ[1]);
-            znak.value = ZZZ[0] * ZZZ[1];}
-            else if (znak.value.indexOf('÷') != -1){
-                var WWW = znak.value.split('÷');
-                WWW[0] = parseInt(WWW[0]);
-                WWW[1] = parseInt(WWW[1]);
-                znak.value = WWW[0] / WWW[1];}
+    var znak = document.querySelector('input').value; // 6+5*7/5
+
+    var numbers = znak.split(/\+|\-|\×|\÷/g); // [6,5,7,5]
+
+    var operators = znak.replace(/[0-9]|\./g, "").split(""); // [+,*,/]
+
+    var division = operators.indexOf('÷'); // 2 - индекс
+    while (division != -1) {
+        numbers.splice(division, 2, numbers[division] / numbers[division + 1]); // [6,5,1.4]
+        operators.splice(division, 1); // [+,*]
+        division = operators.indexOf('÷'); // -1 - не найден
+    }
+
+    // добавить другие знаки (*, +, -)
+    // работал ввод с клавиатуры (только числа, знаки и enter)
+    // чтобы два и более знака не шли друг за другом
+    
+    znak = numbers[0];
+
+    document.querySelector('input').value = znak
 }
 
 var clearButton = document.querySelector('.clear');
