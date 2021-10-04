@@ -81,13 +81,31 @@ document.addEventListener('keydown', function(event){
             event.key == 'Enter'){
         colculate();
     } else if (event.key == '/'){
-                    var tap2 = document.querySelector('input');
-                    tap2.value = tap2.value + '÷';
-                }else if (event.key == '+'){
-                    var tap3 = document.querySelector('input');
-                    tap3.value = tap3.value + '+';
-                }
-                
+                    var tap = document.querySelector('input');
+                    tap.value = tap.value + '÷';}
+                else if (event.key == '*'){
+                    event.preventDefault();
+                    var tap = document.querySelector('input');
+                    tap.value = tap.value + '×';}  
+                else if (event.key == '+'){
+                    event.preventDefault();
+                    var tap = document.querySelector('input');
+                    tap.value = tap.value + '+';}
+                else if (event.key == '-'){
+                    event.preventDefault();
+                    var tap = document.querySelector('input');
+                    tap.value = tap.value + '−';}
+
+                else if (event.key == 'Backspace'){
+                    var tap = document.querySelector('input');
+                    tap.value = tap.value.slice(0, -1);}
+                else if (event.key == 'Delete'){
+                    var tap = document.querySelector('input');
+                    tap.value = '';}
+                else if (event.key == '.'||
+                        event.key == ','){
+                    var tap = document.querySelector('input');
+                    tap.value = tap.value + '.';}
 
     document.querySelectorAll('button').forEach(function(button){
         button.blur();
