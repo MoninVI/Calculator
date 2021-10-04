@@ -1,8 +1,9 @@
 var buttons = document.querySelectorAll(".add");
-buttons.forEach(function(button){
+buttons.forEach(function(button) {
     button.addEventListener('click', giveClick)
 });
-function giveClick(event){
+
+function giveClick(event) {
     var but = event.currentTarget;
     var val = but.innerHTML;
     var inp = document.querySelector('input');
@@ -11,7 +12,8 @@ function giveClick(event){
 
 var result = document.querySelector('.result');
 result.addEventListener('click', colculate);
-function colculate(){
+
+function colculate() {
     var znak = document.querySelector('input').value; // 6+5*7/5
 
     var numbers = znak.split(/\+|\−|\×|\÷/g); // [6,5,7,5]
@@ -24,27 +26,27 @@ function colculate(){
         operators.splice(division, 1); // [+,*]
         division = operators.indexOf('÷'); // -1 - не найден
     }
-    var division2 = operators.indexOf('×'); 
+    var division2 = operators.indexOf('×');
     while (division2 != -1) {
-        numbers.splice(division2, 2, numbers[division2] * numbers[division2 + 1]); 
-        operators.splice(division2, 1); 
-        division2 = operators.indexOf('×'); 
+        numbers.splice(division2, 2, numbers[division2] * numbers[division2 + 1]);
+        operators.splice(division2, 1);
+        division2 = operators.indexOf('×');
     }
-    var division3 = operators.indexOf('−'); 
+    var division3 = operators.indexOf('−');
     while (division3 != -1) {
-        numbers.splice(division3, 2, numbers[division3] - numbers[division3 + 1]); 
-        operators.splice(division3, 1); 
-        division3 = operators.indexOf('−'); 
+        numbers.splice(division3, 2, numbers[division3] - numbers[division3 + 1]);
+        operators.splice(division3, 1);
+        division3 = operators.indexOf('−');
     }
-    var division4 = operators.indexOf('+'); 
+    var division4 = operators.indexOf('+');
     while (division4 != -1) {
-        numbers.splice(division4, 2, Number(numbers[division4]) + Number(numbers[division4 + 1])); 
-        operators.splice(division4, 1); 
-        division4 = operators.indexOf('+'); 
+        numbers.splice(division4, 2, Number(numbers[division4]) + Number(numbers[division4 + 1]));
+        operators.splice(division4, 1);
+        division4 = operators.indexOf('+');
     }
-    // работал ввод с клавиатуры (знаки и enter)
+
     // чтобы два и более знака не шли друг за другом
-    
+
     znak = numbers[0];
 
     document.querySelector('input').value = znak
@@ -52,62 +54,65 @@ function colculate(){
 
 var clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', delInput);
-function delInput (){
+
+function delInput() {
     var valueInput = document.querySelector('input');
     valueInput.value = '';
 }
 
 var minSyb = document.querySelector('.minSym');
 minSyb.addEventListener('click', minusSymbol);
-function minusSymbol(){
+
+function minusSymbol() {
     var symbols = document.querySelector('input');
     symbols.value = symbols.value.slice(0, -1);
 }
 
-document.addEventListener('keydown', function(event){
-    if (event.key =='0'||
-        event.key =='1'||
-        event.key =='2'||
-        event.key =='3'||
-        event.key =='4'||
-        event.key =='5'||
-        event.key =='6'||
-        event.key =='7'||
-        event.key =='8'||
-        event.key =='9'){
+document.addEventListener('keydown', function(event) {
+    if (event.key == '0' ||
+        event.key == '1' ||
+        event.key == '2' ||
+        event.key == '3' ||
+        event.key == '4' ||
+        event.key == '5' ||
+        event.key == '6' ||
+        event.key == '7' ||
+        event.key == '8' ||
+        event.key == '9') {
         var tap = document.querySelector('input');
         tap.value = tap.value + event.key;
-    } else if (event.key == '='||
-            event.key == 'Enter'){
+    } else if (event.key == '=' ||
+        event.key == 'Enter') {
         colculate();
-    } else if (event.key == '/'){
-                    var tap = document.querySelector('input');
-                    tap.value = tap.value + '÷';}
-                else if (event.key == '*'){
-                    event.preventDefault();
-                    var tap = document.querySelector('input');
-                    tap.value = tap.value + '×';}  
-                else if (event.key == '+'){
-                    event.preventDefault();
-                    var tap = document.querySelector('input');
-                    tap.value = tap.value + '+';}
-                else if (event.key == '-'){
-                    event.preventDefault();
-                    var tap = document.querySelector('input');
-                    tap.value = tap.value + '−';}
+    } else if (event.key == '/') {
+        var tap = document.querySelector('input');
+        tap.value = tap.value + '÷';
+    } else if (event.key == '*') {
+        event.preventDefault();
+        var tap = document.querySelector('input');
+        tap.value = tap.value + '×';
+    } else if (event.key == '+') {
+        event.preventDefault();
+        rhfcbdf
+        var tap = document.querySelector('input');
+        tap.value = tap.value + '+';
+    } else if (event.key == '-') {
+        event.preventDefault();
+        var tap = document.querySelector('input');
+        tap.value = tap.value + '−';
+    } else if (event.key == 'Backspace') {
+        var tap = document.querySelector('input');
+        tap.value = tap.value.slice(0, -1);
+    } else if (event.key == 'Delete') {
+        var tap = document.querySelector('input');
+        tap.value = '';
+    } else if (event.key == '.' ||
+        event.key == ',') {
+        var tap = document.querySelector('input');
+        tap.value = tap.value + '.';
+    }
 
-                else if (event.key == 'Backspace'){
-                    var tap = document.querySelector('input');
-                    tap.value = tap.value.slice(0, -1);}
-                else if (event.key == 'Delete'){
-                    var tap = document.querySelector('input');
-                    tap.value = '';}
-                else if (event.key == '.'||
-                        event.key == ','){
-                    var tap = document.querySelector('input');
-                    tap.value = tap.value + '.';}
-
-    document.querySelectorAll('button').forEach(function(button){
+    document.querySelectorAll('button').forEach(function(button) {
         button.blur();
     });
 
