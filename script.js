@@ -47,3 +47,17 @@ function minusSymbol(){
     var symbols = document.querySelector('input');
     symbols.value = symbols.value.slice(0, -1);
 }
+
+document.addEventListener('keydown', function(event){
+    if (event.key == '0'||'1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'){
+        var tap = document.querySelector('input');
+        tap.value = tap.value + event.key;
+    } else if (event.key == '='){
+        var tap = document.querySelector('input');
+        tap.value = result;
+    
+    } else {
+        var tap = document.querySelector('input');
+        tap.value = tap.value;
+    }
+});
