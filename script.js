@@ -14,7 +14,7 @@ result.addEventListener('click', colculate);
 function colculate(){
     var znak = document.querySelector('input').value; // 6+5*7/5
 
-    var numbers = znak.split(/\+|\-|\×|\÷/g); // [6,5,7,5]
+    var numbers = znak.split(/\+|\−|\×|\÷/g); // [6,5,7,5]
 
     var operators = znak.replace(/[0-9]|\./g, "").split(""); // [+,*,/]
 
@@ -24,7 +24,24 @@ function colculate(){
         operators.splice(division, 1); // [+,*]
         division = operators.indexOf('÷'); // -1 - не найден
     }
-
+    var division2 = operators.indexOf('×'); 
+    while (division2 != -1) {
+        numbers.splice(division2, 2, numbers[division2] * numbers[division2 + 1]); 
+        operators.splice(division2, 1); 
+        division2 = operators.indexOf('×'); 
+    }
+    var division3 = operators.indexOf('−'); 
+    while (division3 != -1) {
+        numbers.splice(division3, 2, numbers[division3] - numbers[division3 + 1]); 
+        operators.splice(division3, 1); 
+        division3 = operators.indexOf('−'); 
+    }
+    var division4 = operators.indexOf('+'); 
+    while (division4 != -1) {
+        numbers.splice(division4, 2, Number(numbers[division4]) + Number(numbers[division4 + 1])); 
+        operators.splice(division4, 1); 
+        division4 = operators.indexOf('+'); 
+    }
     // добавить другие знаки (*, +, -)
     // работал ввод с клавиатуры (только числа, знаки и enter)
     // чтобы два и более знака не шли друг за другом
@@ -49,15 +66,19 @@ function minusSymbol(){
 }
 
 document.addEventListener('keydown', function(event){
-    if (event.key == '0'||'1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'){
+    if (event.key =='0'||
+        event.key =='1'||
+        event.key =='2'||
+        event.key =='3'||
+        event.key =='4'||
+        event.key =='5'||
+        event.key =='6'||
+        event.key =='7'||
+        event.key =='8'||
+        event.key =='9'){
         var tap = document.querySelector('input');
         tap.value = tap.value + event.key;
     } else if (event.key == '='){
-        var tap = document.querySelector('input');
-        tap.value = result;
-    
-    } else {
-        var tap = document.querySelector('input');
-        tap.value = tap.value;
-    }
+        colculate();
+    } 
 });
