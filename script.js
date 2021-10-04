@@ -42,8 +42,7 @@ function colculate(){
         operators.splice(division4, 1); 
         division4 = operators.indexOf('+'); 
     }
-    // добавить другие знаки (*, +, -)
-    // работал ввод с клавиатуры (только числа, знаки и enter)
+    // работал ввод с клавиатуры (знаки и enter)
     // чтобы два и более знака не шли друг за другом
     
     znak = numbers[0];
@@ -78,7 +77,21 @@ document.addEventListener('keydown', function(event){
         event.key =='9'){
         var tap = document.querySelector('input');
         tap.value = tap.value + event.key;
-    } else if (event.key == '='){
+    } else if (event.key == '='||
+            event.key == 'Enter'){
         colculate();
-    } 
+    } else if (event.key == '/'){
+                    var tap2 = document.querySelector('input');
+                    tap2.value = tap2.value + '÷';
+                }else if (event.key == '+'){
+                    var tap3 = document.querySelector('input');
+                    tap3.value = tap3.value + '+';
+                }
+                
+
+    document.querySelectorAll('button').forEach(function(button){
+        button.blur();
+    });
+
+
 });
