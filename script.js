@@ -93,7 +93,6 @@ document.addEventListener('keydown', function(event) {
         tap.value = tap.value + '×';
     } else if (event.key == '+') {
         event.preventDefault();
-        rhfcbdf
         var tap = document.querySelector('input');
         tap.value = tap.value + '+';
     } else if (event.key == '-') {
